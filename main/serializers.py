@@ -33,6 +33,10 @@ class AdministratorSerializer(ModelSerializer):
         if value < min_yosh:
             raise ValidationError ('Yoshingiz mos kelmaydi!')
 
+    def create(self, validated_data):
+        user = Administrator.objects.create_user(**validated_data)
+        return user
+
 class BuyurtmaSerializer(ModelSerializer):
     class Meta:
         model = Buyurtma
